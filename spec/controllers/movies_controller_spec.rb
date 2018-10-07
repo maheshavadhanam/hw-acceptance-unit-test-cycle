@@ -1,6 +1,8 @@
 require 'rails_helper'
- describe MoviesController do
-     describe "#director" do
+
+describe MoviesController do
+
+    describe "#director" do
         it "find movies with the same director" do
             @movie_id="534"
             @movie=double('random movie', :director => 'Random Director')
