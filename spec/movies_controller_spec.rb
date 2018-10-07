@@ -5,7 +5,7 @@ require 'rails_helper'
             @movie_id="534"
             @movie=double('random movie', :director => 'Random Director')
             expect(Movie).to receive(:find).with(@movie_id).and_return(@movie)
-            expect(@movie).to receive(:similar_movies)
+            expect(@movie).to receive(:check_similar_movies)
             get :director, {:id => @movie_id}
             expect(response).to render_template(:director)
         end
