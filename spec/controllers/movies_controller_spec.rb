@@ -20,4 +20,25 @@ describe MoviesController do
             
         end
     end
+    describe "#update" do
+        it "Should update movie params" do
+            @movie_id = "Abc"
+            @movie = double("Movie",:title => "random")
+            @params = {:title => "random",:rating => "R", :director => "random"}
+            expect(Movie).to receive(:find).with(@movie_id).and_return(@movie)
+            expect(@movie).to receive(:update_attributes!).and_return(nil)
+            get :update, {:id => @movie_id, :movie => @params}
+            expect(response).to redirect_to(movie_path(@movie))
+        end
+    end
+    
+    describe "#show" do
+        it "Should show movie attributes" do
+            @movie_id = "ijk"
+            @movie = double("movie",:title => "random")
+            expect(Movie).to receive(:find).with(@movie_id).and_return(@movie)
+            get :show, {:id => @movie_id}
+            expect(response).to render_template(:show)
+        end
+    end
 end
